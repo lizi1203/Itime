@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int RESULT_UPDATE =901 ;
     private AppBarConfiguration mAppBarConfiguration;
     private ArrayList<TimeItem> timeItemList=new ArrayList<>();;
     Button button;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         timeAdapter = new TimeAdapter(MainActivity.this, R.layout.time_item, timeItemList);
         listView.setAdapter(timeAdapter);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Init(){
+
         dataFileSource=new DataFileSource(this);
         timeItemList=dataFileSource.load();
         if(timeItemList.size()==0) {
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
         }
 
     }
@@ -116,7 +121,19 @@ public class MainActivity extends AppCompatActivity {
                     timeItemList.remove(position);
                     timeAdapter.notifyDataSetChanged();
                 }
+                if (resultCode == RESULT_UPDATE) {
+                int position = data.getIntExtra("position", 0);
+                String title = data.getStringExtra("title");
+                String description = data.getStringExtra("description");
+
+                TimeItem timeItem=timeItemList.get(position);
+                timeItem.setTitle(title);
+                timeItem.setDescription(description);
+                timeAdapter.notifyDataSetChanged();
+            }
                 break;
+
+
 
             default:
         }

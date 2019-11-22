@@ -79,7 +79,7 @@ public class CreatNewActivity extends AppCompatActivity {
     private void Init()
     {
         chooseItems=new ArrayList<>();
-        chooseItems.add(new ChooseItem("Date  ", "Long press to use calendar",
+        chooseItems.add(new ChooseItem("Date  ", "Long press to use calculator",
                 R.drawable.calendar_icon));
         chooseItems.add(new ChooseItem("Period","None                      ",R.drawable.period_icon));
         chooseItems.add(new ChooseItem("Image ","                          ",R.drawable.image_icon));

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import static com.example.itime.MainActivity.RESULT_UPDATE;
+
 public class TimeAllActivity extends AppCompatActivity {
     Button buttonReturn;
     Button buttonDelete;
@@ -66,7 +68,11 @@ public class TimeAllActivity extends AppCompatActivity {
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent4=new Intent();
+                intent.putExtra("title", titleTextView2.getText().toString().trim());
+                intent.putExtra("description", descriptionTextView2.getText().toString().trim());
+                intent.putExtra("position", position);
+                setResult(RESULT_UPDATE, intent);
                 finish();
             }
         });
